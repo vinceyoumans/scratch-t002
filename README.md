@@ -9,7 +9,11 @@ Will make incremental changes to it.
 ## v0001 - simple setup.
 
 ## v 1.2
-Will add Authentication
+add Authentication  using JWT
+and internals package
+
+works, but no sign in page.
+
 
 
 
