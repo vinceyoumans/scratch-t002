@@ -14,6 +14,9 @@ and internals package
 
 works, but no sign in page.
 
+## v1.03
+adding themed login page
+with presets for accounts
 
 
 
