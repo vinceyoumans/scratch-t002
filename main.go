@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	su "t002/setup"
 
 	"t002/internals"
 )
 
 func main() {
 	// Serve static files from the 'static' directory
-	fs := http.FileServer(http.Dir("theme/lo001/static"))
+	fs := http.FileServer(http.Dir(su.UrlToTemplate + "/static"))
+
 	http.Handle("/", fs)
 
 	// Define routes for the application
@@ -20,6 +22,7 @@ func main() {
 		http.Redirect(w, r, "/landing-auth", http.StatusSeeOther)
 	})))
 	http.HandleFunc("/landing-auth", internals.LandingAuth)
+	http.HandleFunc("/landing", internals.Landing)
 	http.HandleFunc("/data", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "<p>Hello from Go!</p>")
 	})
@@ -29,4 +32,5 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Failed to start server: %v\n", err)
 		os.Exit(1)
 	}
+	
 }

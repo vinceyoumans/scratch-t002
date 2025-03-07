@@ -25,7 +25,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 		Secure:   true, // Set to false in development
 	})
 
-	http.Redirect(w, r, "lo.templates/protected", http.StatusSeeOther)
+	http.Redirect(w, r, "/protected", http.StatusSeeOther)
 }
 
 func Landing(w http.ResponseWriter, r *http.Request) {
