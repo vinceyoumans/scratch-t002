@@ -8,5 +8,8 @@ Will make incremental changes to it.
 
 ## v0001 - simple setup.
 
+## v 1.2
+Will add Authentication
+
 
 
