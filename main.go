@@ -9,11 +9,20 @@ import (
 )
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir("static")))
-	http.HandleFunc("/login", internals.Authenticate)
+	// Serve static files from the 'static' directory
+	fs := http.FileServer(http.Dir("theme/lo001/static"))
+	http.Handle("/", fs)
+
+	// Define routes for the application
+	http.HandleFunc("/login", internals.Login)
+	http.HandleFunc("/authenticate", internals.Authenticate)
 	http.Handle("/protected", internals.Authorize(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Welcome, john_doe!")
+		http.Redirect(w, r, "/landing-auth", http.StatusSeeOther)
 	})))
+	http.HandleFunc("/landing-auth", internals.LandingAuth)
+	http.HandleFunc("/data", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "<p>Hello from Go!</p>")
+	})
 
 	fmt.Println("Starting server on :8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {

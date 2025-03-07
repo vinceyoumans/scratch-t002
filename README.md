@@ -17,6 +17,15 @@ works, but no sign in page.
 ## v1.03
 adding themed login page
 with presets for accounts
+Includes a /login
+but no DB or preset for a DB
+
+added setup module
+- so that themes can be changed easily.
+
+works
+
+
 
 
 

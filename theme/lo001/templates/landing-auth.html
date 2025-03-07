@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authenticated Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+<div class="p-4 max-w-sm mx-auto bg-white rounded-lg shadow-md">
+    <h1 class="text-2xl font-bold mb-4">Welcome to the Authenticated Landing Page</h1>
+    <p>This is a private page accessible only to authenticated users.</p>
+    <button id="load-data" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Load Data</button>
+    <div id="data-container" class="mt-4"></div>
+</div>
+
+<script>
+    document.getElementById('load-data').addEventListener('click', function() {
+        htmx.get('/data', { target: '#data-container' });
+    });
+</script>
+</body>
+</html>
